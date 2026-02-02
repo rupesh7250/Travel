@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TravelX | Premium Travel Experience</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+
+  <style>
+    body{
+      scroll-behavior: smooth;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    /* Hero Section */
+    .hero{
+      background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e");
+      background-size: cover;
+      background-position: center;
+      height: 90vh;
+      color: white;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero h1{
+      font-size: 3.5rem;
+    }
+
+    /* Premium Cards */
+    .card{
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      transition: 0.4s;
+    }
+
+    .card:hover{
+      transform: translateY(-10px);
+    }
+
+    /* Footer */
+    footer{
+      background: #111;
+      color: white;
+      padding: 30px;
+    }
+  </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#mainNav">
+
+<!-- Navbar -->
+<nav id="mainNav" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#home">TravelX</a>
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#dest">Destinations</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Services</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Flights</a></li>
+            <li><a class="dropdown-item" href="#">Hotels</a></li>
+            <li><a class="dropdown-item" href="#">Tours</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="container text-center">
+    <h1 class="fw-bold">Explore The World in Luxury</h1>
+    <p class="lead">Premium Travel | Trusted Service | Best Price</p>
+
+    <button class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#bookModal">
+      Book Now
+    </button>
+  </div>
+</section>
+
+<!-- Alert -->
+<div class="container mt-4">
+  <div class="alert alert-success alert-dismissible fade show">
+    🎉 Special Offer: Get 30% OFF on Europe Tour!
+    <button class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+</div>
+
+<!-- Carousel -->
+<section class="container my-5">
+  <div id="travelSlider" class="carousel slide" data-bs-ride="carousel">
+
+    <div class="carousel-indicators">
+      <button data-bs-target="#travelSlider" data-bs-slide-to="0" class="active"></button>
+      <button data-bs-target="#travelSlider" data-bs-slide-to="1"></button>
+      <button data-bs-target="#travelSlider" data-bs-slide-to="2"></button>
+    </div>
+
+    <div class="carousel-inner rounded-4">
+
+      <div class="carousel-item active">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" class="d-block w-100" height="450">
+      </div>
+
+      <div class="carousel-item">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" class="d-block w-100" height="450">
+      </div>
+
+      <div class="carousel-item">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" class="d-block w-100" height="450">
+      </div>
+
+    </div>
+
+    <button class="carousel-control-prev" data-bs-target="#travelSlider" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" data-bs-target="#travelSlider" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+
+  </div>
+</section>
+
+<!-- Destinations -->
+<section id="dest" class="container my-5">
+
+  <h2 class="text-center mb-3 fw-bold text-dark">Popular Destinations</h2>
+  <p class="text-center text-muted mb-5">Explore World Class Premium Locations</p>
+
+  <div id="destContainer" class="row g-4"></div>
+</section>
+
+<!-- Destination Modal -->
+<div class="modal fade" id="destModal">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content rounded-4 shadow-lg">
+
+      <div class="modal-header bg-dark text-white">
+        <h5 id="destTitle" class="fw-bold"></h5>
+        <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body text-center p-4">
+        <img id="destImg" class="img-fluid rounded-4 mb-4 shadow" loading="lazy">
+        <p id="destDesc" class="text-muted fs-5"></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Premium Destination Cards */
+  .dest-card{
+    height:100%;
+    border-radius:20px;
+    overflow:hidden;
+    background:linear-gradient(145deg,#ffffff,#f1f1f1);
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    transition:0.4s;
+  }
+
+  .dest-card:hover{
+    transform:translateY(-10px) scale(1.02);
+  }
+
+  .dest-card img{
+    height:260px;
+    object-fit:cover;
+  }
+
+  .btn-premium{
+    background:linear-gradient(45deg,#d4af37,#ffd700);
+    color:#000;
+    border:none;
+    border-radius:30px;
+    padding:8px 22px;
+    font-weight:600;
+    transition:0.3s;
+  }
+
+  .btn-premium:hover{
+    background:linear-gradient(45deg,#ffd700,#d4af37);
+    color:#000;
+    transform:scale(1.05);
+  }
+</style>
+
+<script>
+
+// Destination Data
+const destinations = [
+ {name:"Dubai",img:"https://images.unsplash.com/photo-1505761671935-60b3a7427bad",desc:"Dubai is a luxury city famous for skyscrapers, Burj Khalifa, desert safari, shopping malls, beaches, nightlife, adventure sports, world-class hotels, fine dining and modern lifestyle."},
+ {name:"Paris",img:"https://images.unsplash.com/photo-1502602898657-3e91760cbb34",desc:"Paris is the city of love known for Eiffel Tower, museums, art galleries, fashion streets, romantic cafes, historical buildings, fine dining, river cruises and rich culture."},
+ {name:"Maldives",img:"https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1",desc:"Maldives is famous for crystal clear water, private villas, coral reefs, snorkeling, scuba diving, luxury resorts, honeymoon trips, peaceful environment and sunset views."},
+ {name:"London",img:"https://images.unsplash.com/photo-1469474968028-56623f02e42e",desc:"London is a historic city with Big Ben, London Eye, royal palaces, museums, shopping streets, cultural diversity, modern lifestyle, theatres and iconic bridges."},
+ {name:"New York",img:"https://images.unsplash.com/photo-1549692520-acc6669e2f0c",desc:"New York is known for Times Square, skyscrapers, Broadway shows, Central Park, shopping hubs, finance center, nightlife, cultural diversity and global influence."},
+ {name:"Tokyo",img:"https://images.unsplash.com/photo-1540959733332-eab4deabeeaf",desc:"Tokyo blends tradition and technology with temples, anime culture, robotics, food streets, shopping zones, clean roads, discipline and innovative lifestyle."},
+ {name:"Singapore",img:"https://images.unsplash.com/photo-1508962914676-134849a727f0",desc:"Singapore is a modern city famous for Marina Bay, Sentosa Island, clean streets, shopping malls, gardens, food courts, smart transport and safety."},
+ {name:"Bali",img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e",desc:"Bali is a tropical island with beaches, temples, waterfalls, yoga retreats, rice fields, cultural festivals, nightlife, resorts and honeymoon spots."},
+ {name:"Rome",img:"https://images.unsplash.com/photo-1506806732259-39c2d0268443",desc:"Rome is a historic city known for Colosseum, ancient monuments, art museums, churches, Italian cuisine, rich civilization and architectural beauty."},
+ {name:"Switzerland",img:"https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba",desc:"Switzerland is famous for snow mountains, lakes, scenic trains, chocolates, adventure sports, peaceful towns, clean environment and luxury tourism."},
+ {name:"Thailand",img:"https://images.unsplash.com/photo-1508009603885-50cf7c579365",desc:"Thailand is known for beaches, nightlife, temples, street food, massage centers, floating markets, shopping streets, islands and budget tourism."},
+ {name:"Goa",img:"https://images.unsplash.com/photo-1516483638261-f4dbaf036963",desc:"Goa is India’s beach paradise famous for parties, churches, seafood, sunset views, water sports, relaxed lifestyle, cafes and music festivals."},
+ {name:"Kerala",img:"https://images.unsplash.com/photo-1582510003544-4d00b7f74220",desc:"Kerala is called God’s Own Country with backwaters, greenery, Ayurveda therapy, houseboats, hills, wildlife, rich traditions and calm environment."},
+ {name:"Manali",img:"https://images.unsplash.com/photo-1593693397690-362cb9666fc2",desc:"Manali is a hill station with snow mountains, rivers, adventure sports, trekking routes, honeymoon spots, scenic valleys and cool climate."},
+ {name:"Kashmir",img:"https://images.unsplash.com/photo-1572782252655-9c8771392601",desc:"Kashmir is Heaven on Earth known for lakes, gardens, mountains, snowfall, houseboats, handicrafts, apple orchards and natural beauty."}
+];
+
+// Generate Cards
+let html = "";
+
+destinations.forEach((d,i)=>{
+  html += `
+  <div class="col-lg-4 col-md-6">
+    <div class="card dest-card h-100">
+      <img loading="lazy" src="${d.img}" class="card-img-top">
+      <div class="card-body text-center d-flex flex-column p-4">
+        <h4 class="fw-bold mb-3">${d.name}</h4>
+        <button class="btn btn-premium mt-auto" onclick="showDest(${i})">Read More</button>
+      </div>
+    </div>
+  </div>`;
+});
+
+document.getElementById("destContainer").innerHTML = html;
+
+// Show Modal
+function showDest(i){
+  document.getElementById("destTitle").innerText = destinations[i].name;
+  document.getElementById("destImg").src = destinations[i].img;
+  document.getElementById("destDesc").innerText = destinations[i].desc;
+
+  let modal = new bootstrap.Modal(document.getElementById("destModal"));
+  modal.show();
+}
+</script>
+
+</script>
+
+<!-- Tabs -->
+<section class="container my-5">
+
+  <ul class="nav nav-tabs" id="myTab">
+    <li class="nav-item">
+      <a class="nav-link active" data-bs-toggle="tab" href="#flight">Flights</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#hotel">Hotels</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="tab" href="#tour">Tours</a>
+    </li>
+  </ul>
+
+  <div class="tab-content p-4 border">
+
+    <div class="tab-pane fade show active" id="flight">
+      <p>Best international & domestic flights.</p>
+    </div>
+
+    <div class="tab-pane fade" id="hotel">
+      <p>5-Star luxury hotels.</p>
+    </div>
+
+    <div class="tab-pane fade" id="tour">
+      <p>Guided premium tours.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAQ Collapse -->
+<section class="container my-5">
+
+  <h3 class="text-center mb-3">FAQs</h3>
+
+  <div class="accordion" id="faq">
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#q1">
+          Is booking refundable?
+        </button>
+      </h2>
+      <div id="q1" class="accordion-collapse collapse show">
+        <div class="accordion-body">Yes, within 7 days.</div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#q2">
+          Do you provide visa help?
+        </button>
+      </h2>
+      <div id="q2" class="accordion-collapse collapse">
+        <div class="accordion-body">Yes, full support provided.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="container my-5">
+
+  <h2 class="text-center mb-4">Contact Us</h2>
+
+  <div class="row justify-content-center">
+
+    <div class="col-md-6">
+
+      <input type="text" id="search" class="form-control mb-3" placeholder="Search destination...">
+
+      <form>
+        <input type="text" class="form-control mb-3" placeholder="Name">
+        <input type="email" class="form-control mb-3" placeholder="Email">
+        <textarea class="form-control mb-3" placeholder="Message"></textarea>
+
+        <button class="btn btn-dark w-100" id="sendBtn" type="button">
+          Send Message
+        </button>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center">
+  <p>© 2026 TravelX | Premium Travel Agency</p>
+</footer>
+
+<!-- Modal -->
+<div class="modal fade" id="bookModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="fw-bold">Book Your Trip</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div id="successMsg" class="alert alert-success d-none">
+          ✅ Booking Successful! Our team will contact you soon.
+        </div>
+
+        <form id="bookForm">
+
+          <div class="row g-3">
+
+            <div class="col-md-6">
+              <input type="text" id="bname" class="form-control" placeholder="Your Name" required>
+            </div>
+
+            <div class="col-md-6">
+              <input type="email" id="bemail" class="form-control" placeholder="Email" required>
+            </div>
+
+            <div class="col-md-6">
+              <input type="tel" id="bphone" class="form-control" placeholder="Mobile Number" required>
+            </div>
+
+            <div class="col-md-6">
+              <select id="bdest" class="form-control" required>
+                <option value="">Select Destination</option>
+                <option>Dubai</option>
+                <option>Paris</option>
+                <option>Maldives</option>
+                <option>London</option>
+                <option>New York</option>
+                <option>Tokyo</option>
+                <option>Singapore</option>
+                <option>Bali</option>
+                <option>Rome</option>
+                <option>Switzerland</option>
+                <option>Thailand</option>
+                <option>Goa</option>
+                <option>Kerala</option>
+                <option>Manali</option>
+                <option>Shimla</option>
+                <option>Kashmir</option>
+              </select>
+            </div>
+
+            <div class="col-12">
+              <textarea id="bmsg" class="form-control" placeholder="Special Request" rows="3"></textarea>
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="clearBtn">Clear</button>
+        <button class="btn btn-success" id="submitBtn">Submit Booking</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+
+$(document).ready(function(){
+
+// Enable Tooltips
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+tooltipTriggerList.map(function (el) {
+  return new bootstrap.Tooltip(el)
+});
+
+// Enable Popovers
+var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+popoverTriggerList.map(function (el) {
+  return new bootstrap.Popover(el)
+});
+
+// Typeahead (Search)
+const places = [
+"Dubai","Paris","Maldives","London","New York","Tokyo","Singapore",
+"Bali","Rome","Switzerland","Thailand","Goa","Kerala","Manali","Shimla","Kashmir"
+];
+
+$("#search").on("keyup", function(){
+  let value = $(this).val().toLowerCase();
+  let match = places.filter(p => p.toLowerCase().includes(value));
+  if(match.length>0 && value!=""){
+    console.log(match);
+  }
+});
+
+// Send Button Transition
+$("#sendBtn").click(function(){
+  $(this).html("Sending...");
+  setTimeout(()=>{
+    $(this).html("Message Sent ✔");
+    $(this).removeClass("btn-dark").addClass("btn-success");
+  },1500);
+});
+
+// Disable submit initially
+$("#submitBtn").prop("disabled",true).css("filter","blur(1px)");
+
+// Enable submit only when all fields filled
+$("#bookForm input, #bookForm select").on("input change",function(){
+
+  if(
+    $("#bname").val()!=="" &&
+    $("#bemail").val()!=="" &&
+    $("#bphone").val()!=="" &&
+    $("#bdest").val()!==""
+  ){
+    $("#submitBtn").prop("disabled",false).css("filter","blur(0)");
+  }else{
+    $("#submitBtn").prop("disabled",true).css("filter","blur(1px)");
+  }
+});
+
+// Booking Submit
+$("#submitBtn").click(function(){
+
+  let btn = $(this);
+
+  btn.prop("disabled",true).css("filter","blur(0)");
+  btn.html("Processing...");
+
+  setTimeout(function(){
+
+    $("#successMsg").removeClass("d-none").show();
+
+    btn.html("Submitted ✔");
+
+  },1200);
+
+});
+
+// Clear Form
+$("#clearBtn").click(function(){
+  $("#bookForm")[0].reset();
+  $("#successMsg").addClass("d-none").hide();
+  $("#submitBtn").html("Submit Booking").prop("disabled",true).css("filter","blur(1px)");
+});
+
+// Enable submit again("disabled",true);
+  },1200);
+
+});
+
+// Clear Form
+$("#clearBtn").click(function(){
+  $("#bookForm")[0].reset();
+  $("#successMsg").addClass("d-none");
+  $("#submitBtn").html("Submit Booking").prop("disabled",false);
+});
+
+});
+
+</script>
+
+</body>
+</html>
